@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "push_swap_tester"
+version = "0.1.0"
+description = "A script for testing push_swap"
+authors = ["nafuka11"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+black = "^20.8b1"
+flake8 = "^3.9.0"
+isort = "^5.8.0"
+mypy = "^0.812"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

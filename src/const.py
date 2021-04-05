@@ -1,0 +1,12 @@
+PROJECT_DIR = ".."
+PUSH_SWAP_NAME = "push_swap"
+CHECKER_NAME = "checker"
+LOG_FILE_NAME = "result.log"
+
+MIN_VALUE = 1
+MAX_TEST_COUNT = 200
+ARG_LENGTH = 5
+
+CODE_RED = 31
+CODE_GREEN = 32
+CODE_CYAN = 36
