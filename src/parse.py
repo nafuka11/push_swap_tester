@@ -8,10 +8,7 @@ from src import const
 def parse_arguments(args: List[str]) -> Namespace:
     parser = init_praser()
     ret = parser.parse_args(args)
-    if ret.range and ret.range[0] > ret.range[1]:
-        parser.error(f"argument -r: invalid range: '{ret.range[0]}' '{ret.range[1]}'")
-    if not ret.dir.is_dir():
-        parser.error(f"argument -d: is not a directory: '{ret.dir}'")
+    validate_arguments(parser, ret)
     return ret
 
 
@@ -61,3 +58,19 @@ def positive_int(string: str) -> int:
     if num < 0:
         raise ValueError(num)
     return num
+
+
+def validate_arguments(parser: ArgumentParser, ret: Namespace) -> None:
+    validate_range(parser, ret)
+    validate_dir(parser, ret)
+
+
+def validate_range(parser: ArgumentParser, ret: Namespace) -> None:
+    if ret.range[0] > ret.range[1]:
+        parser.error(f"argument -r: invalid range: '{ret.range[0]}' '{ret.range[1]}'")
+
+
+def validate_dir(parser: ArgumentParser, ret: Namespace) -> None:
+    if not ret.dir.is_dir():
+        parser.error(f"argument -d: is not a directory: '{ret.dir}'")
+
