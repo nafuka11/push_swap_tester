@@ -1,4 +1,6 @@
-from argparse import ArgumentParser, Namespace
+from __future__ import annotations
+
+from argparse import RawTextHelpFormatter, ArgumentParser, Namespace
 from pathlib import Path
 from typing import List
 
@@ -13,14 +15,15 @@ def parse_arguments(args: List[str]) -> Namespace:
 
 
 def init_praser() -> ArgumentParser:
-    parser = ArgumentParser()
+    parser = ArgumentParser(formatter_class=PushSwapTesterHelpFormatter)
     parser.add_argument(
         "-l",
         "--len",
         dest="len",
         type=positive_int,
         default=const.ARG_LENGTH,
-        help=f"argument length (default: {const.ARG_LENGTH})",
+        help=f"argument length   (default: {const.ARG_LENGTH})",
+        metavar="number",
     )
     parser.add_argument(
         "-c",
@@ -28,7 +31,8 @@ def init_praser() -> ArgumentParser:
         dest="count",
         type=positive_int,
         default=const.MAX_TEST_COUNT,
-        help=f"max test count (default: {const.MAX_TEST_COUNT})",
+        help=f"max test count    (default: {const.MAX_TEST_COUNT})",
+        metavar="number",
     )
     parser.add_argument(
         "-d",
@@ -37,6 +41,7 @@ def init_praser() -> ArgumentParser:
         type=Path,
         default=const.PROJECT_DIR,
         help=f'project directory (default: "{const.PROJECT_DIR}")',
+        metavar="path",
     )
     parser.add_argument(
         "-g",
@@ -51,8 +56,8 @@ def init_praser() -> ArgumentParser:
         dest="range",
         nargs=2,
         type=int,
-        help=f"range of numbers (default: {const.MIN_VALUE}, LEN)",
-        metavar=("BEGIN", "END"),
+        help=f"range of numbers  (default: {const.MIN_VALUE}, LEN)",
+        metavar=("min", "max"),
     )
     return parser
 
@@ -78,3 +83,18 @@ def validate_dir(parser: ArgumentParser, ret: Namespace) -> None:
     if not ret.dir.is_dir():
         parser.error(f"argument -d: is not a directory: '{ret.dir}'")
 
+
+class PushSwapTesterHelpFormatter(RawTextHelpFormatter):
+    def __init__(
+        self,
+        prog: str,
+        indent_increment: int = 2,
+        max_help_position: int = 32,
+        width: int | None = None,
+    ) -> None:
+        super().__init__(
+            prog,
+            indent_increment=indent_increment,
+            max_help_position=max_help_position,
+            width=width,
+        )
