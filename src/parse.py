@@ -16,6 +16,7 @@ def init_praser() -> ArgumentParser:
     parser = ArgumentParser()
     parser.add_argument(
         "-l",
+        "--len",
         dest="len",
         type=positive_int,
         default=const.ARG_LENGTH,
@@ -23,6 +24,7 @@ def init_praser() -> ArgumentParser:
     )
     parser.add_argument(
         "-c",
+        "--count",
         dest="count",
         type=positive_int,
         default=const.MAX_TEST_COUNT,
@@ -30,6 +32,7 @@ def init_praser() -> ArgumentParser:
     )
     parser.add_argument(
         "-d",
+        "--dir",
         dest="dir",
         type=Path,
         default=const.PROJECT_DIR,
@@ -44,6 +47,7 @@ def init_praser() -> ArgumentParser:
     )
     parser.add_argument(
         "-r",
+        "--range",
         dest="range",
         nargs=2,
         type=int,
