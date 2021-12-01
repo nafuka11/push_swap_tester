@@ -56,7 +56,8 @@ def init_praser() -> ArgumentParser:
         dest="range",
         nargs=2,
         type=int,
-        help=f"range of numbers  (default: {const.MIN_VALUE}, LEN)",
+        default=(const.INT_MIN, const.INT_MAX),
+        help=f"range of numbers  (default: {const.INT_MIN}, {const.INT_MAX})",
         metavar=("min", "max"),
     )
     return parser

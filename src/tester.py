@@ -19,12 +19,9 @@ class Tester:
         dir = kwargs.get("dir") or Path(const.PROJECT_DIR)
         self.max_test_count = kwargs.get("count") or const.MAX_TEST_COUNT
         self.num = kwargs.get("len") or const.ARG_LENGTH
-        self.min = const.MIN_VALUE
-        self.max = self.num
-        range = kwargs.get("range")
-        if range and len(range) >= 2:
-            self.min = range[0]
-            self.max = range[1]
+        range = kwargs["range"]
+        self.min = range[0]
+        self.max = range[1]
         self.num = min(self.max - self.min + 1, self.num)
         if kwargs.get("generate") is False:
             self.push_swap = (dir / const.PUSH_SWAP_NAME).resolve()
