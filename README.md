@@ -71,10 +71,12 @@ See result.log for details
 python3 push_swap_tester.py
 # 引数5個のテスト（引数の値の範囲：1から5）
 python3 push_swap_tester.py -r 1 5
+
 # 引数100個のテストを200回行う（引数の値の範囲：INT_MINからINT_MAX）
 python3 push_swap_tester.py -l 100
 # 引数100個のテストを400回行う（引数の値の範囲：INT_MINからINT_MAX）
 python3 push_swap_tester.py -l 100 -c 400
+
 # 引数500個のテストを200回行う（引数の値の範囲：INT_MINからINT_MAX）
 python3 push_swap_tester.py -l 500
 
