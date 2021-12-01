@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 
 from src.parse import parse_arguments
+from src import const
 
 
 @pytest.mark.parametrize(
@@ -27,6 +28,17 @@ def test_parse_arguments_error(args: list[str]) -> None:
         parse_arguments(args)
 
 
+def test_parse_arguments_no_arg() -> None:
+    args = []
+    ret = parse_arguments(args)
+    assert ret.len == const.ARG_LENGTH
+    assert ret.count == const.MAX_TEST_COUNT
+    assert ret.range[0] == const.INT_MIN
+    assert ret.range[1] == const.INT_MAX
+    assert str(ret.dir) == const.PROJECT_DIR
+    assert ret.generate == False
+
+
 def test_parse_arguments_normal() -> None:
     args = ["-l", "42", "-c", "24", "-r", "1", "2", "-d", "../push_swap"]
     ret = parse_arguments(args)
@@ -35,3 +47,10 @@ def test_parse_arguments_normal() -> None:
     assert ret.range[0] == 1
     assert ret.range[1] == 2
     assert str(ret.dir) == "../push_swap"
+    assert ret.generate == False
+
+
+def test_parse_arguments_gen() -> None:
+    args = ["--gen"]
+    ret = parse_arguments(args)
+    assert ret.generate == True
