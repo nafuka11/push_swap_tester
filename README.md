@@ -21,7 +21,24 @@ Python 3.8.2で動作を確認しています。
 
 1. `checker` の配置
 
-   `checker_Mac` / `checker_linux` を使う場合、実行ファイル `push_swap` と同じディレクトリに配置し、`checker` にリネームしてください。
+   `checker_Mac` / `checker_linux` を使う場合
+   - 実行ファイル `push_swap` と同じディレクトリに配置し、`checker` にリネームしてください。
+   - リネーム後、 `checker` に実行権限がついていることを確認してください。
+     ```bash
+     ls -l checker
+     ```
+   - `checker` に実行権限が付いていない場合、実行権限を付与してください。
+     ```bash
+     chmod +x checker
+     ```
+
+   自分でビルドした `checker` を使う場合
+   - この手順はスキップしてください。
+
+1. cloneしたリポジトリのディレクトリに移動
+   ```bash
+   cd push_swap_tester
+   ```
 
 ### ヘルプ
 
