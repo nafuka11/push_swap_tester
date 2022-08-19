@@ -15,6 +15,16 @@ class CommandNotFoundError(PushSwapError):
         return f"Command not found: {self.path}"
 
 
+class ExecutePermissionError(PushSwapError):
+    """push_swap, checkerに実行権限がない時のエラー"""
+
+    def __init__(self, path: Path) -> None:
+        self.path = path
+
+    def __str__(self) -> str:
+        return f"File is not executable: {self.path}"
+
+
 class ArgRangeError(PushSwapError):
     """引数生成時のエラー"""
 
