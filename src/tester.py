@@ -8,7 +8,7 @@ from statistics import median_high
 from typing import Any
 
 from src import const
-from src.exception import CommandNotFoundError
+from src.exception import CommandNotFoundError, ExecutePermissionError
 from src.gen_int import generate_args
 from src.print import print_colored
 from src.tester_result import TesterResult
@@ -26,12 +26,16 @@ class Tester:
         if kwargs.get("generate") is False:
             self.push_swap = (dir / const.PUSH_SWAP_NAME).resolve()
             self.checker = (dir / const.CHECKER_NAME).resolve()
-            if not self.push_swap.is_file() or not os.access(self.push_swap, os.X_OK):
-                raise CommandNotFoundError(self.push_swap)
-            if not self.checker.is_file() or not os.access(self.checker, os.X_OK):
-                raise CommandNotFoundError(self.checker)
+            self.validate_executable(self.push_swap)
+            self.validate_executable(self.checker)
             self.op_count: Counter[int] = Counter()
             self.cases: list[TesterResult] = []
+
+    def validate_executable(self, command: Path) -> None:
+        if not command.is_file():
+            raise CommandNotFoundError(command)
+        if not os.access(command, os.X_OK):
+            raise ExecutePermissionError(command)
 
     def exec_commands(self) -> None:
         args = self.generate_args()
