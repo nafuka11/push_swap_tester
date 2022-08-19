@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from argparse import RawTextHelpFormatter, ArgumentParser, Namespace
+from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 from pathlib import Path
 from typing import List
 
