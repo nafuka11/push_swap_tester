@@ -35,6 +35,11 @@ Python 3.8.2で動作を確認しています。
    自分でビルドした `checker` を使う場合
    - この手順はスキップしてください。
 
+1. `push_swap` のビルド
+
+   - push_swap_testerは、実行ファイル `push_swap` のビルドを行いません。  
+     push_swap_testerを実行する前に `make` 等のコマンドを実行して `push_swap` をビルドするようにしてください。
+
 1. cloneしたリポジトリのディレクトリに移動
    ```bash
    cd push_swap_tester
